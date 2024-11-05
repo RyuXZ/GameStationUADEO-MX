@@ -1,0 +1,86 @@
+/***
+    El nuevo restablecimiento de CSS - versión 1.7.3 (última actualización 7.8.2022)
+    Página de GitHub: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Elimina todos los estilos de la "Hoja de Estilos del Agente de Usuario", excepto la propiedad 'display'
+    - La parte "symbol *" es para solucionar el error de los sprites SVG en Firefox
+ */
+ *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+    display: revert;
+}
+
+/* Valor preferido para box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reaplicar el cursor de puntero para las etiquetas de anclaje */
+a, button {
+    cursor: revert;
+}
+
+/* Eliminar estilos de listas (viñetas/números) */
+ol, ul, menu {
+    list-style: none;
+}
+
+/* Para que las imágenes no puedan exceder su contenedor */
+img {
+    max-width: 100%;
+}
+
+/* Elimina el espacio entre celdas en las tablas */
+table {
+    border-collapse: collapse;
+}
+
+/* Safari - solucionando el problema cuando se usa user-select:none en el <body> y el input de texto no funciona */
+input, textarea {
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+
+/* Revertir la propiedad 'white-space' para los elementos textarea en Safari */
+textarea {
+    white-space: revert;
+}
+
+/* Estilo mínimo para permitir el estilo del elemento meter */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* Restablecer la opacidad predeterminada del texto del marcador de posición (placeholder) de los inputs */
+::placeholder {
+    color: unset;
+}
+
+/* Arreglar la característica del atributo 'hidden'.
+   display:revert; revierte al elemento en lugar del atributo */
+:where([hidden]) {
+    display: none;
+}
+
+/* Revertir para el error en los navegadores Chromium
+   - Solución para que el atributo contenteditable funcione correctamente.
+   - webkit-user-select: auto; agregado para Safari en caso de usar user-select:none en el elemento contenedor */
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    line-break: after-white-space;
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+
+/* Reaplicar la característica de arrastrar - solo existe en Chromium y Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+    user-drag: element;
+}
